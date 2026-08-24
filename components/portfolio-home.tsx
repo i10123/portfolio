@@ -7,9 +7,11 @@ import { ArrowDownRight, ArrowUpRight, Download, MapPin, Send, Sparkles } from "
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 type Language = "ru" | "en";
 const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
+const assetPath = (path: string) => `${basePath}${path}`;
 
 const copy = {
   ru: {
@@ -35,6 +37,7 @@ const copy = {
     stack: "Стек",
     stackText: "Flutter / Dart · Material Design · Local storage · Secure storage · Biometrics",
     galleryLabel: "Интерфейс Coinly",
+    galleryHint: "Листайте, чтобы посмотреть все экраны",
     aboutLabel: "Обо мне",
     aboutTitle: "Люблю момент,\nкогда идея становится\nнастоящим продуктом.",
     aboutText: "Мне 19 лет. Сейчас я расширяю инженерную базу через практику: проектирую интерфейсы, пишу код и постоянно ищу способы делать продукты понятнее и полезнее.",
@@ -65,6 +68,7 @@ const copy = {
     stack: "Stack",
     stackText: "Flutter / Dart · Material Design · Local storage · Secure storage · Biometrics",
     galleryLabel: "Coinly interface",
+    galleryHint: "Swipe to explore every screen",
     aboutLabel: "About me",
     aboutTitle: "I love the moment\nwhen an idea becomes\na real product.",
     aboutText: "I am 19. I build my engineering foundation through hands-on practice: designing interfaces, writing code, and constantly looking for ways to make products clearer and more useful.",
@@ -129,11 +133,11 @@ export function PortfolioHome() {
         <div className="relative mx-auto w-full max-w-md md:ml-auto md:max-w-none">
           <div className="absolute -inset-10 rounded-full bg-[#ffbd45]/10 blur-3xl" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-[#171c27]">
-            <Image src="/images/denis-karakulko.jpg" alt="Денис Каракулько" fill priority sizes="(min-width: 768px) 40vw, 90vw" className="object-cover" />
+            <Image src={assetPath("/images/denis-karakulko.jpg")} alt="Денис Каракулько" fill priority sizes="(min-width: 768px) 40vw, 90vw" className="object-cover" />
           </div>
           <div className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#161b25]/90 px-4 py-3 shadow-xl backdrop-blur md:-left-9">
             <Avatar className="size-10">
-              <AvatarImage src="/images/denis-karakulko.jpg" alt="" />
+              <AvatarImage src={assetPath("/images/denis-karakulko.jpg")} alt="" />
               <AvatarFallback>DK</AvatarFallback>
             </Avatar>
             <div><p className="text-sm font-semibold">Denis Karakulko</p><p className="mt-0.5 flex items-center gap-1 text-xs text-[#a6adba]"><MapPin className="size-3" />{t.location}</p></div>
@@ -147,7 +151,7 @@ export function PortfolioHome() {
           <Card className="border-white/10 bg-[#151b27] py-0 shadow-none">
             <CardContent className="grid gap-0 px-0 lg:grid-cols-[1.02fr_.98fr]">
               <div className="relative min-h-[360px] overflow-hidden bg-[#0e1420] lg:min-h-[600px]">
-                <Image src="/images/coinly/hero.png" alt="Coinly — personal finance app" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover object-center" />
+                <Image src={assetPath("/images/coinly/hero.png")} alt="Coinly — personal finance app" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover object-center" />
               </div>
               <div className="flex flex-col p-6 md:p-10 lg:p-12">
                 <CardHeader className="px-0"><CardTitle className="whitespace-pre-line text-3xl leading-[.95] tracking-[-.05em] md:text-5xl">{t.projectTitle}</CardTitle><CardDescription className="mt-7 max-w-xl text-base leading-relaxed text-[#aeb6c2]">{t.projectText}</CardDescription></CardHeader>
@@ -156,7 +160,7 @@ export function PortfolioHome() {
               </div>
             </CardContent>
           </Card>
-          <div id="coinly-gallery" className="mt-5 grid gap-5 md:grid-cols-2"><div className="overflow-hidden rounded-2xl border border-white/10 bg-[#151b27]"><Image src="/images/coinly/accounts.jpg" alt={t.galleryLabel} width={1280} height={2772} className="h-auto w-full" /></div><div className="overflow-hidden rounded-2xl border border-white/10 bg-[#151b27]"><Image src="/images/coinly/analytics.jpg" alt={t.galleryLabel} width={1280} height={2772} className="h-auto w-full" /></div></div>
+          <div id="coinly-gallery" className="mt-6"><div className="mb-4 flex items-center justify-between gap-4"><h3 className="text-sm font-medium text-[#e8ebef]">{t.galleryLabel}</h3><p className="text-xs text-[#8993a3]">{t.galleryHint}</p></div><Carousel opts={{ align: "start", loop: true }} className="px-0 md:px-12"><CarouselContent className="-ml-3"><CarouselItem className="basis-[78%] pl-3 sm:basis-[45%] lg:basis-[28%]"><Screen image="home" label={t.galleryLabel} /></CarouselItem><CarouselItem className="basis-[78%] pl-3 sm:basis-[45%] lg:basis-[28%]"><Screen image="operations" label={t.galleryLabel} /></CarouselItem><CarouselItem className="basis-[78%] pl-3 sm:basis-[45%] lg:basis-[28%]"><Screen image="accounts" label={t.galleryLabel} /></CarouselItem><CarouselItem className="basis-[78%] pl-3 sm:basis-[45%] lg:basis-[28%]"><Screen image="categories" label={t.galleryLabel} /></CarouselItem><CarouselItem className="basis-[78%] pl-3 sm:basis-[45%] lg:basis-[28%]"><Screen image="analytics" label={t.galleryLabel} /></CarouselItem></CarouselContent><CarouselPrevious aria-label="Previous screen" className="hidden border-white/15 bg-[#151b27] text-white hover:bg-[#212938] disabled:opacity-20 md:inline-flex" /><CarouselNext aria-label="Next screen" className="hidden border-white/15 bg-[#151b27] text-white hover:bg-[#212938] disabled:opacity-20 md:inline-flex" /></Carousel></div>
         </div>
       </section>
 
@@ -169,4 +173,8 @@ export function PortfolioHome() {
       <footer className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-[#7c8695] md:flex-row md:items-center md:justify-between md:px-8"><span>© {new Date().getFullYear()} {t.footer}</span><a href="https://t.me/i10123" target="_blank" rel="noreferrer" className="transition-colors hover:text-white">@i10123</a></footer>
     </main>
   );
+}
+
+function Screen({ image, label }: { image: string; label: string }) {
+  return <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#151b27]"><Image src={assetPath(`/images/coinly/${image}.jpg`)} alt={label} width={1280} height={2772} className="h-[410px] w-full object-contain md:h-[500px]" /></div>;
 }
