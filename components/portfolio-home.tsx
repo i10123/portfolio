@@ -149,14 +149,14 @@ export function PortfolioHome() {
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <div className="mb-10 flex items-end justify-between gap-5 md:mb-14"><div><p className="text-xs uppercase tracking-[.16em] text-[#ffbd45]">{t.projectLabel}</p><h2 className="mt-3 text-3xl font-semibold tracking-[-.05em] md:text-5xl">Coinly</h2></div><p className="hidden max-w-xs text-right text-sm leading-relaxed text-[#8e98a8] md:block">{t.projectNote}</p></div>
           <Card className="border-white/10 bg-[#151b27] py-0 shadow-none">
-            <CardContent className="grid gap-0 px-0 lg:grid-cols-[1.02fr_.98fr]">
-              <div className="relative min-h-[360px] overflow-hidden bg-[#0e1420] lg:min-h-[600px]">
-                <Image src={assetPath("/images/coinly/hero.png")} alt="Coinly — personal finance app" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover object-center" />
+            <CardContent className="px-0">
+              <div className="relative aspect-[2.057/1] overflow-hidden bg-[#0e1420]">
+                <Image src={assetPath("/images/coinly/hero.png")} alt="Coinly — personal finance app" fill sizes="(min-width: 1024px) 80vw, 100vw" className="object-cover object-center" />
               </div>
-              <div className="flex flex-col p-6 md:p-10 lg:p-12">
-                <CardHeader className="px-0"><CardTitle className="whitespace-pre-line text-3xl leading-[.95] tracking-[-.05em] md:text-5xl">{t.projectTitle}</CardTitle><CardDescription className="mt-7 max-w-xl text-base leading-relaxed text-[#aeb6c2]">{t.projectText}</CardDescription></CardHeader>
-                <div className="mt-9 grid gap-8 border-y border-white/10 py-8 sm:grid-cols-2"><div><p className="text-xs font-medium uppercase tracking-[.14em] text-[#ffbd45]">{t.capabilities}</p><ul className="mt-4 flex flex-col gap-2.5 text-sm text-[#d5d9e0]">{t.capabilitiesItems.map((item) => <li key={item} className="flex items-center gap-2"><Sparkles className="size-3 text-[#66d0aa]" />{item}</li>)}</ul></div><div><p className="text-xs font-medium uppercase tracking-[.14em] text-[#ffbd45]">{t.stack}</p><p className="mt-4 text-sm leading-relaxed text-[#d5d9e0]">{t.stackText}</p></div></div>
-                <div className="mt-8 flex flex-wrap items-center justify-between gap-4"><a href="#coinly-gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-[#ffbd45] transition-colors hover:text-[#ffd17a]">{t.projectCta}<ArrowDownRight className="size-4" /></a><a href={`${basePath}/downloads/coinly.apk`} download className="inline-flex items-center gap-2 text-xs text-[#d7dce4] transition-colors hover:text-[#ffbd45]"><Download className="size-3.5" />{t.downloadApk} · {t.projectNote}</a></div>
+              <div className="p-6 md:p-9 lg:p-10">
+                <CardHeader className="px-0"><CardTitle className="whitespace-pre-line text-balance text-3xl leading-tight tracking-[-.05em] md:text-4xl">{t.projectTitle}</CardTitle><CardDescription className="mt-4 max-w-3xl text-base leading-relaxed text-[#aeb6c2]">{t.projectText}</CardDescription></CardHeader>
+                <div className="mt-7 grid gap-8 border-y border-white/10 py-6 sm:grid-cols-2"><div><p className="text-xs font-medium uppercase tracking-[.14em] text-[#ffbd45]">{t.capabilities}</p><ul className="mt-4 flex flex-col gap-2.5 text-sm text-[#d5d9e0]">{t.capabilitiesItems.map((item) => <li key={item} className="flex items-center gap-2"><Sparkles className="size-3 text-[#66d0aa]" />{item}</li>)}</ul></div><div><p className="text-xs font-medium uppercase tracking-[.14em] text-[#ffbd45]">{t.stack}</p><p className="mt-4 max-w-md text-sm leading-relaxed text-[#d5d9e0]">{t.stackText}</p></div></div>
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-4"><a href="#coinly-gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-[#ffbd45] transition-colors hover:text-[#ffd17a]">{t.projectCta}<ArrowDownRight className="size-4" /></a><a href={`${basePath}/downloads/coinly.apk`} download className="inline-flex items-center gap-2 text-xs text-[#d7dce4] transition-colors hover:text-[#ffbd45]"><Download className="size-3.5" />{t.downloadApk} · {t.projectNote}</a></div>
               </div>
             </CardContent>
           </Card>
