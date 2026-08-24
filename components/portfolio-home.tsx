@@ -118,7 +118,7 @@ export function PortfolioHome() {
             {t.availability}
           </div>
           <p className="mb-5 text-sm text-[#a6adba]">{t.eyebrow}</p>
-          <h1 className="whitespace-pre-line text-balance text-[clamp(3.8rem,9vw,8rem)] font-semibold leading-[.84] tracking-[-0.075em]">{t.title}</h1>
+          <h1 className="whitespace-pre-line text-balance text-[clamp(3.8rem,9vw,8rem)] font-semibold leading-[.96] tracking-[-0.075em]">{t.title}</h1>
           <p className="mt-9 max-w-md text-xl leading-relaxed text-[#d4d7dd]">{t.lead}</p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-[#9099a8]">{t.description}</p>
           <div className="mt-10 flex flex-wrap gap-3">
