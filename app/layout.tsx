@@ -13,24 +13,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Portfolio | Full-Stack Developer",
-    template: "%s | Portfolio",
-  },
-  description: "Full-stack developer portfolio showcasing projects built with React, Next.js, TypeScript, and modern web technologies.",
-  keywords: ["portfolio", "developer", "full-stack", "React", "Next.js", "TypeScript", "web development"],
-  authors: [{ name: "Developer" }],
+  title: { default: "Денис Каракулько — разработчик", template: "%s | Денис Каракулько" },
+  description: "Портфолио Дениса Каракулько: мобильная и веб-разработка, проекты и эксперименты.",
+  keywords: ["Денис Каракулько", "portfolio", "developer", "Flutter", "Dart", "web development"],
+  authors: [{ name: "Денис Каракулько" }],
   openGraph: {
     type: "website",
-    locale: "en_US",
-    siteName: "Portfolio",
+    locale: "ru_BY",
+    siteName: "Денис Каракулько",
   },
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
+    { color: "#0b0e14" },
   ],
 };
 
@@ -39,7 +35,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="ru"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >

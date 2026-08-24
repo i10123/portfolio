@@ -49,10 +49,10 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --background: oklch(0.12 0.012 260);
+  --foreground: oklch(0.95 0.01 90);
+  --card: oklch(0.17 0.016 260);
+  --card-foreground: oklch(0.95 0.01 90);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
@@ -126,5 +126,13 @@
   }
   html {
     @apply font-sans;
+    color-scheme: dark;
+    scroll-behavior: smooth;
   }
+  a, button { touch-action: manipulation; }
+  a:focus-visible, button:focus-visible { outline: 2px solid #ffbd45; outline-offset: 3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
