@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { ArrowDownRight, ArrowUpRight, Download, MapPin, Send, Sparkles } from "lucide-react";
+import { useState, type PointerEvent } from "react";
+import { ArrowDownRight, ArrowUpRight, Download, Send, Sparkles } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -25,12 +24,11 @@ const copy = {
     description: "Учусь в ГрГУ, развиваюсь в мобильной и веб-разработке. Использую ИИ как осмысленный инструмент: для исследования, быстрых прототипов и качественной реализации.",
     viewProjects: "Смотреть проекты",
     telegram: "Telegram",
-    location: "Гродно, Беларусь",
     projectLabel: "Избранный проект · 01",
     projectTitle: "Личные финансы —\nпод контролем.",
     projectText: "Coinly — локальное мобильное приложение для учёта личных финансов. Счета, операции, накопления и понятная аналитика — без регистрации, рекламы и отправки данных на сервер.",
     projectCta: "Материалы проекта",
-    projectNote: "Android APK · 51 МБ",
+    projectNote: "Android APK · 52 МБ",
     downloadApk: "Скачать APK",
     capabilities: "Возможности",
     capabilitiesItems: ["Счета и операции", "Категории и накопления", "Аналитика расходов", "PIN и биометрия", "Импорт и экспорт"],
@@ -56,12 +54,11 @@ const copy = {
     description: "I study at Yanka Kupala State University of Grodno and grow through mobile and web development. I use AI thoughtfully for research, rapid prototyping, and high-quality implementation.",
     viewProjects: "View projects",
     telegram: "Telegram",
-    location: "Grodno, Belarus",
     projectLabel: "Featured project · 01",
     projectTitle: "Personal finance,\nunder control.",
     projectText: "Coinly is a local-first mobile app for personal finance. Accounts, transactions, savings, and clear insights — without sign-ups, advertising, or sending data to a server.",
     projectCta: "Project materials",
-    projectNote: "Android APK · 51 MB",
+    projectNote: "Android APK · 52 MB",
     downloadApk: "Download APK",
     capabilities: "What it does",
     capabilitiesItems: ["Accounts and transactions", "Categories and savings", "Spending analytics", "PIN and biometrics", "Import and export"],
@@ -80,10 +77,19 @@ const copy = {
 
 export function PortfolioHome() {
   const [language, setLanguage] = useState<Language>("ru");
+  const [lightPosition, setLightPosition] = useState({ x: 65, y: 28 });
   const t = copy[language];
 
   function changeLanguage(nextLanguage: Language) {
     setLanguage(nextLanguage);
+  }
+
+  function movePortraitLight(event: PointerEvent<HTMLDivElement>) {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    setLightPosition({
+      x: Math.round(((event.clientX - bounds.left) / bounds.width) * 100),
+      y: Math.round(((event.clientY - bounds.top) / bounds.height) * 100),
+    });
   }
 
   return (
@@ -132,15 +138,18 @@ export function PortfolioHome() {
         </div>
         <div className="relative mx-auto w-full max-w-md md:ml-auto md:max-w-none">
           <div className="absolute -inset-10 rounded-full bg-[#ffbd45]/10 blur-3xl" />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-[#171c27]">
+          <div
+            className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-[#171c27]"
+            onPointerMove={movePortraitLight}
+            onPointerLeave={() => setLightPosition({ x: 65, y: 28 })}
+          >
             <Image src={assetPath("/images/denis-karakulko.jpg")} alt="Денис Каракулько" fill priority sizes="(min-width: 768px) 40vw, 90vw" className="object-cover" />
-          </div>
-          <div className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#161b25]/90 px-4 py-3 shadow-xl backdrop-blur md:-left-9">
-            <Avatar className="size-10">
-              <AvatarImage src={assetPath("/images/denis-karakulko.jpg")} alt="" />
-              <AvatarFallback>DK</AvatarFallback>
-            </Avatar>
-            <div><p className="text-sm font-semibold">Denis Karakulko</p><p className="mt-0.5 flex items-center gap-1 text-xs text-[#a6adba]"><MapPin className="size-3" />{t.location}</p></div>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 motion-reduce:hidden group-hover:opacity-100"
+              style={{ background: `radial-gradient(circle 12rem at ${lightPosition.x}% ${lightPosition.y}%, rgb(255 189 69 / 0.24), transparent 65%)` }}
+            />
+            <div aria-hidden="true" className="pointer-events-none absolute inset-5 rounded-[1.5rem] border border-white/15 opacity-0 transition-[opacity,transform] duration-200 ease-out motion-reduce:hidden group-hover:scale-[.96] group-hover:opacity-100" />
           </div>
         </div>
       </section>
